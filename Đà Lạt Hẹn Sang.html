@@ -18,13 +18,11 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
-  /* Cài đặt cuộn mượt gốc của trình duyệt và bù trừ thanh menu */
   html { 
     scroll-behavior: smooth; 
     scroll-padding-top: 90px; 
   }
   
-  /* Đổi từ hidden thành clip để không làm hỏng tính năng cuộn mượt */
   body { 
     font-family: 'Be Vietnam Pro', sans-serif; 
     background: var(--white); 
@@ -42,12 +40,10 @@
   .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--gold); letter-spacing: 0.06em; }
   .logo span { color: var(--fog); font-style: italic; }
   
-  /* Thêm align-items: center để hàng chữ thẳng tắp */
   nav ul { list-style: none; display: flex; align-items: center; gap: 2.5rem; }
   nav ul a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fog); text-decoration: none; font-weight: 500; transition: color 0.3s; }
   nav ul a:hover { color: var(--gold); }
   
-  /* Đồng bộ font chữ, in hoa và kích thước cho nút Đặt Bàn trên thanh Nav */
   .nav-cta { 
     background: var(--rose) !important; 
     color: #fff !important; 
@@ -160,7 +156,6 @@
   .success-msg h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--pine); margin-bottom: 0.5rem; }
   .success-msg p { font-size: 0.85rem; color: var(--mist); }
 
-  /* CSS cho Menu Modal Mới */
   .menu-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-height: 55vh; overflow-y: auto; padding-right: 0.5rem; }
   .menu-list::-webkit-scrollbar { width: 6px; }
   .menu-list::-webkit-scrollbar-thumb { background: rgba(184,151,90,0.5); border-radius: 4px; }
@@ -215,13 +210,22 @@
   .cta-banner p { font-size: 1rem; font-weight: 300; opacity: 0.88; margin-bottom: 2.5rem; max-width: 500px; margin-inline: auto; }
 
   footer { background: var(--dark); color: var(--fog); padding: 4rem 4rem 2rem; }
-  .footer-top { display: grid; grid-template-columns: 2fr 1.5fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(184,151,90,0.15); margin-bottom: 2rem; }
+  
+  /* Cập nhật chia lại 4 cột */
+  .footer-top { 
+    display: grid; 
+    grid-template-columns: 1.8fr 1.8fr 1.5fr 1fr; 
+    gap: 3rem; 
+    padding-bottom: 3rem; 
+    border-bottom: 1px solid rgba(184,151,90,0.15); 
+    margin-bottom: 2rem; 
+  }
+  
   .footer-brand .logo { display: block; margin-bottom: 1rem; }
   .footer-brand p { font-size: 0.82rem; color: var(--mist); line-height: 1.7; font-weight: 300; }
   .footer-col h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
   .footer-col ul { list-style: none; }
   
-  /* Cập nhật đồng bộ khoảng cách và cỡ chữ cho tất cả các thẻ li trong cột footer */
   .footer-col li { 
     margin-bottom: 1rem; 
     font-size: 0.85rem; 
@@ -233,9 +237,34 @@
   .footer-col a:hover { color: var(--fog); }
   
   .footer-col.contact-info li { display: flex; align-items: flex-start; gap: 0.6rem; }
-  .footer-col.contact-info strong { color: var(--gold); font-weight: 500; min-width: 65px; flex-shrink: 0; }
+  
+  /* Cập nhật độ rộng để không rớt dòng */
+  .footer-col.contact-info strong { 
+    color: var(--gold); 
+    font-weight: 500; 
+    min-width: 155px; 
+    flex-shrink: 0; 
+  }
 
   .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: rgba(143,168,154,0.55); }
+
+  /* CSS cho Icon mạng xã hội */
+  .social-link { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.6rem; 
+    color: var(--mist); 
+    text-decoration: none; 
+    transition: color 0.2s; 
+  }
+  .social-link:hover { color: var(--fog); }
+  .social-link svg { 
+    width: 16px; 
+    height: 16px; 
+    fill: #ffffff; 
+    transition: fill 0.2s; 
+  }
+  .social-link:hover svg { fill: var(--gold); }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
@@ -671,7 +700,7 @@
   <div class="section-header reveal">
     <span class="section-tag">✦ Cảm Nhận Thực Khách ✦</span>
     <h2>Họ Đã Nói Gì</h2>
-    <p>Hơn 5.000 thực khách đã tin tưởng Đà Lạt Hẹn Sang để tạo nên những kỷ niệm đáng nhớ.</p>
+    <p>Hơn 5.000 thực khách đã tin tưởng Đà Lạt <i>Hẹn Sang</i> để tạo nên những kỷ niệm đáng nhớ.</p>
   </div>
   <div class="testimonial-grid reveal">
     <div class="testimonial-card">
@@ -681,7 +710,7 @@
     </div>
     <div class="testimonial-card">
       <div class="stars">★★★★★</div>
-      <p>"Lần đầu đến Đà Lạt mà không biết ăn ở đâu, nhờ Đà Lạt Hẹn Sang tôi khám phá được Túi Mơ To — khu vườn đẹp như tranh, thức ăn ngon và nhân viên rất thân thiện."</p>
+      <p>"Lần đầu đến Đà Lạt mà không biết ăn ở đâu, nhờ Đà Lạt <i>Hẹn Sang</i> tôi khám phá được Túi Mơ To — khu vườn đẹp như tranh, thức ăn ngon và nhân viên rất thân thiện."</p>
       <div class="reviewer"><strong>Thanh Hà</strong>Hà Nội · Tháng 5/2026</div>
     </div>
     <div class="testimonial-card">
@@ -710,6 +739,8 @@
     <div class="footer-col contact-info">
       <h4>Liên Hệ Tại Văn Phòng</h4>
       <ul>
+        <li><strong>Mã số doanh nghiệp:</strong> <span>0123454321</span></li>
+        <li><strong>Chủ quản:</strong> <span>Phạm Bá Lân</span></li>
         <li><strong>Địa chỉ:</strong> <span>123 Trần Phú, Phường 3, Đà Lạt</span></li>
         <li><strong>Hotline:</strong> <span>0901 234 567 (24/7)</span></li>
         <li><strong>Email:</strong> <span>dalathensang@gmail.com</span></li>
@@ -718,17 +749,51 @@
     </div>
 
     <div class="footer-col">
-      <h4>Hỗ Trợ</h4>
+      <h4>Khác</h4>
       <ul>
-        <li><a href="#">Chính Sách Hủy</a></li>
-        <li><a href="#">Câu Hỏi Thường Gặp</a></li>
-        <li><a href="#">Đăng Ký Nhà Hàng</a></li>
-        <li><a href="#">Điều Khoản Sử Dụng</a></li>
+        <li><a href="#">Đà Lạt <i>Hẹn Sang</i> Affiliate</a></li>
+        <li><a href="#">Giới thiệu bạn bè</a></li>
+        <li><a href="#">Đà Lạt <i>Hẹn Sang</i> Blog</a></li>
+        <li><a href="#">Chính Sách Quyền Riêng</a></li>
+        <li><a href="#">Điều khoản & Điều kiện</a></li>
+        <li><a href="#">Đăng ký nhà hàng của bạn</a></li>
+        <li><a href="#">Đăng ký doanh nghiệp hoạt động nhà hàng của bạn</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Theo dõi chúng tôi trên</h4>
+      <ul>
+        <li>
+          <a href="#" class="social-link">
+            <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.53 11.16 6.5 13 6.5c.88 0 1.82.16 1.82.16v2h-1.03c-1 0-1.31.62-1.31 1.25V12h2.27l-.36 3h-1.9v6.8C18.56 20.87 22 16.84 22 12z"/></svg>
+            Facebook
+          </a>
+        </li>
+        <li>
+          <a href="#" class="social-link">
+            <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a href="#" class="social-link">
+            <svg viewBox="0 0 24 24"><path d="M12.53.03c1.31-.02 2.61-.01 3.91-.01.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.96-.5 3.96-1.72 5.39-1.41 1.63-3.64 2.45-5.74 2.22-2.42-.25-4.59-1.74-5.46-4-1.12-2.92-.1-6.4 2.42-8.16 1.83-1.28 4.31-1.44 6.25-.39v4.32c-.8-.44-1.78-.58-2.67-.32-.93.26-1.71 1.05-1.92 2.01-.27 1.16.22 2.46 1.19 3.14 1.22.86 3.03.66 3.98-.5.48-.61.76-1.39.77-2.18V.03z"/></svg>
+            TikTok
+          </a>
+        </li>
+        <li>
+          <a href="#" class="social-link">
+            <svg viewBox="0 0 24 24"><path d="M21.58 6.41a2.81 2.81 0 0 0-1.98-1.98C17.86 4 12 4 12 4s-5.86 0-7.6.43a2.81 2.81 0 0 0-1.98 1.98C2 8.14 2 12 2 12s0 3.86.42 5.59a2.81 2.81 0 0 0 1.98 1.98C6.14 20 12 20 12 20s5.86 0 7.6-.43a2.81 2.81 0 0 0 1.98-1.98C22 15.86 22 12 22 12s0-3.86-.42-5.59zM10 15V9l5.2 3z"/></svg>
+            Youtube
+          </a>
+        </li>
       </ul>
     </div>
   </div>
+
   <div class="footer-bottom">
-    <span>© 2026 Đà Lạt Hẹn Sang. Bảo lưu mọi quyền.</span>
+    <span>© 2026 Đà Lạt <i>Hẹn Sang</i>. Bảo lưu mọi quyền.</span>
     <span>Được làm với ♥ từ thành phố ngàn hoa</span>
   </div>
 </footer>
