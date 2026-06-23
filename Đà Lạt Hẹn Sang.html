@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đà Lạt Hẹn Sang – Đặt Bàn Nhà Hàng Đà Lạt</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pine: #1a2e1e;
+    --fog: #e8e2d9;
+    --cream: #f5f0e8;
+    --rose: #c4735a;
+    --gold: #b8975a;
+    --mist: #8fa89a;
+    --dark: #0f1a12;
+    --white: #fdfaf5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  /* Cài đặt cuộn mượt gốc của trình duyệt và bù trừ thanh menu */
+  html { 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 90px; 
+  }
+  
+  /* Đổi từ hidden thành clip để không làm hỏng tính năng cuộn mượt */
+  body { 
+    font-family: 'Be Vietnam Pro', sans-serif; 
+    background: var(--white); 
+    color: var(--pine); 
+    overflow-x: clip; 
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(26,46,30,0.93); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,151,90,0.25);
+  }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--gold); letter-spacing: 0.06em; }
+  .logo span { color: var(--fog); font-style: italic; }
+  
+  /* Thêm align-items: center để hàng chữ thẳng tắp */
+  nav ul { list-style: none; display: flex; align-items: center; gap: 2.5rem; }
+  nav ul a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fog); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+  nav ul a:hover { color: var(--gold); }
+  
+  /* Đồng bộ font chữ, in hoa và kích thước cho nút Đặt Bàn trên thanh Nav */
+  .nav-cta { 
+    background: var(--rose) !important; 
+    color: #fff !important; 
+    padding: 0.55rem 1.4rem; 
+    border-radius: 2px; 
+    border: none; 
+    cursor: pointer; 
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.78rem; 
+    letter-spacing: 0.12em; 
+    text-transform: uppercase; 
+    font-weight: 500;
+    transition: background 0.3s, color 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--dark) !important; }
+
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, rgba(15,26,18,0.72) 0%, rgba(15,26,18,0.35) 60%, rgba(15,26,18,0.85) 100%), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80') center/cover no-repeat;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 80%, rgba(184,151,90,0.12) 0%, transparent 70%); pointer-events: none; }
+  .hero-tag { font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; animation: fadeUp 0.9s ease both; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 8vw, 7rem); font-weight: 300; color: var(--white); line-height: 1.0; animation: fadeUp 1s 0.15s ease both; }
+  .hero h1 em { font-style: italic; color: var(--gold); display: block; font-size: 1.12em; }
+  .hero-sub { margin-top: 1.8rem; font-size: 1rem; color: rgba(232,226,217,0.8); max-width: 520px; line-height: 1.7; font-weight: 300; animation: fadeUp 1s 0.3s ease both; }
+  .hero-actions { display: flex; gap: 1.2rem; margin-top: 2.8rem; animation: fadeUp 1s 0.45s ease both; }
+  .btn-primary { background: var(--rose); color: #fff; padding: 1rem 2.4rem; border: none; cursor: pointer; font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; border-radius: 2px; text-decoration: none; transition: background 0.3s, transform 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--gold); color: var(--dark); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--fog); padding: 1rem 2.4rem; border: 1px solid rgba(232,226,217,0.45); cursor: pointer; font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; border-radius: 2px; text-decoration: none; transition: border-color 0.3s, color 0.3s, transform 0.2s; display: inline-block; }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .scroll-hint { position: absolute; bottom: 2.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(232,226,217,0.45); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; animation: fadeUp 1s 0.8s ease both; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(184,151,90,0.8), transparent); animation: scrollPulse 2s infinite; }
+
+  .about-strip { background: var(--pine); color: var(--fog); padding: 4rem; display: flex; align-items: center; justify-content: center; gap: 5rem; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; margin-top: 0.4rem; color: var(--mist); }
+  .strip-divider { width: 1px; height: 60px; background: rgba(184,151,90,0.3); }
+
+  .section-header { text-align: center; padding: 5rem 2rem 3rem; }
+  .section-tag { font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--rose); margin-bottom: 1rem; display: block; }
+  .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; line-height: 1.1; color: var(--pine); }
+  .section-header p { margin-top: 1rem; color: #5a6e5f; font-size: 0.95rem; max-width: 520px; margin-inline: auto; line-height: 1.7; font-weight: 300; }
+
+  .restaurants-section { background: var(--cream); padding-bottom: 6rem; }
+  .filter-bar { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; padding: 0 2rem 3rem; }
+  .filter-btn { padding: 0.5rem 1.4rem; border-radius: 2px; border: 1px solid rgba(26,46,30,0.2); background: transparent; font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pine); cursor: pointer; transition: all 0.25s; }
+  .filter-btn:hover, .filter-btn.active { background: var(--pine); color: var(--gold); border-color: var(--pine); }
+
+  .restaurant-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.8rem; padding: 0 4rem; max-width: 1400px; margin: 0 auto; }
+  .restaurant-card { background: var(--white); border-radius: 4px; overflow: hidden; box-shadow: 0 2px 20px rgba(26,46,30,0.07); transition: transform 0.35s, box-shadow 0.35s; cursor: pointer; display: flex; flex-direction: column; }
+  .restaurant-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(26,46,30,0.14); }
+  .card-img { position: relative; overflow: hidden; height: 220px; flex-shrink: 0; }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s ease; }
+  .restaurant-card:hover .card-img img { transform: scale(1.06); }
+  .card-badge { position: absolute; top: 1rem; left: 1rem; background: rgba(26,46,30,0.85); backdrop-filter: blur(6px); color: var(--gold); font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.35rem 0.8rem; border-radius: 2px; }
+  .card-price { position: absolute; top: 1rem; right: 1rem; background: var(--rose); color: #fff; font-size: 0.7rem; letter-spacing: 0.08em; padding: 0.35rem 0.75rem; border-radius: 2px; }
+  .card-body { padding: 1.6rem; flex-grow: 1; display: flex; flex-direction: column; }
+  .card-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--pine); margin-bottom: 0.4rem; }
+  .card-meta { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--mist); margin-bottom: 0.9rem; }
+  .card-meta span { color: var(--rose); }
+  .card-desc { font-size: 0.86rem; color: #5a6e5f; line-height: 1.65; font-weight: 300; margin-bottom: 1.2rem; flex-grow: 1; }
+  .card-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+  .tag { background: var(--cream); color: var(--pine); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 2px; border: 1px solid rgba(26,46,30,0.1); }
+  
+  .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1.2rem; border-top: 1px solid var(--cream); margin-top: auto; }
+  
+  a.card-location { font-size: 0.75rem; color: var(--mist); display: flex; align-items: center; gap: 0.35rem; text-decoration: none; transition: color 0.3s; cursor: pointer; }
+  a.card-location:hover { color: var(--rose); }
+  
+  .card-actions { display: flex; gap: 0.6rem; }
+  
+  .btn-book { background: var(--pine); color: var(--gold); padding: 0.55rem 1.2rem; border: none; cursor: pointer; font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; border-radius: 2px; transition: background 0.25s, color 0.25s, transform 0.2s; }
+  .btn-book:hover { background: var(--gold); color: var(--dark); transform: translateY(-2px); }
+
+  .btn-menu { background: var(--rose); color: #fff; padding: 0.55rem 1.2rem; border: none; cursor: pointer; font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; border-radius: 2px; transition: background 0.25s, color 0.25s, transform 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+  .btn-menu:hover { background: var(--gold); color: var(--dark); transform: translateY(-2px); }
+
+  .modal-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(10,18,12,0.75); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal { background: var(--white); width: 100%; max-width: 580px; border-radius: 4px; overflow: hidden; transform: translateY(24px); transition: transform 0.35s; max-height: 92vh; overflow-y: auto; }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-header { background: var(--pine); padding: 2rem 2.5rem; display: flex; align-items: flex-start; justify-content: space-between; }
+  .modal-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--white); }
+  .modal-header p { font-size: 0.8rem; color: var(--mist); margin-top: 0.3rem; }
+  .modal-close { background: none; border: none; color: var(--mist); font-size: 1.5rem; cursor: pointer; line-height: 1; transition: color 0.2s; }
+  .modal-close:hover { color: var(--gold); }
+  .modal-body { padding: 2.5rem; }
+
+  .modal-interior { margin-bottom: 2rem; display: none; }
+  .modal-interior-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 4px; box-shadow: 0 4px 15px rgba(26,46,30,0.08); margin-bottom: 1rem; }
+  .modal-interior-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--pine); margin-bottom: 0.5rem; text-align: center; }
+  .modal-interior-desc { font-size: 0.88rem; color: #5a6e5f; line-height: 1.7; font-weight: 300; text-align: center; }
+
+  .form-group { margin-bottom: 1.4rem; }
+  .form-group label { display: block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pine); margin-bottom: 0.5rem; font-weight: 600; }
+  
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.85rem 1rem; border: 1px solid rgba(26,46,30,0.18); border-radius: 2px; background: var(--cream); color: var(--pine); font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.9rem; transition: border-color 0.2s; outline: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--rose); }
+  .form-group select:disabled { background: #e8e2d9; color: rgba(26,46,30,0.6); cursor: not-allowed; border-color: rgba(26,46,30,0.1); }
+  
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .btn-submit { width: 100%; padding: 1.1rem; background: var(--rose); color: #fff; border: none; cursor: pointer; font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; border-radius: 2px; margin-top: 0.5rem; transition: background 0.3s; }
+  .btn-submit:hover { background: var(--pine); }
+  .success-msg { display: none; text-align: center; padding: 2rem; background: rgba(143,168,154,0.12); border-radius: 4px; margin-top: 1rem; }
+  .success-msg.show { display: block; }
+  .success-msg h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--pine); margin-bottom: 0.5rem; }
+  .success-msg p { font-size: 0.85rem; color: var(--mist); }
+
+  /* CSS cho Menu Modal Mới */
+  .menu-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-height: 55vh; overflow-y: auto; padding-right: 0.5rem; }
+  .menu-list::-webkit-scrollbar { width: 6px; }
+  .menu-list::-webkit-scrollbar-thumb { background: rgba(184,151,90,0.5); border-radius: 4px; }
+  .menu-list-item { display: block; padding: 1.2rem; border: 1px solid rgba(26,46,30,0.1); border-radius: 4px; text-decoration: none; transition: all 0.25s; background: var(--white); cursor: pointer; }
+  .menu-list-item:hover { border-color: var(--rose); transform: translateY(-3px); box-shadow: 0 6px 15px rgba(26,46,30,0.06); }
+  .menu-list-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--pine); margin-bottom: 0.4rem; }
+  .menu-list-item p { font-size: 0.75rem; color: #5a6e5f; line-height: 1.5; font-weight: 300; }
+
+  .experience-section { padding: 0 0 6rem; }
+  .experience-grid { display: grid; grid-template-columns: 1fr 1fr; max-width: 1200px; margin: 0 auto; padding: 0 4rem; gap: 4rem; align-items: center; }
+  .exp-image { position: relative; }
+  .exp-image img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 4px; }
+  .exp-image::before { content: ''; position: absolute; top: -1.5rem; left: -1.5rem; right: 1.5rem; bottom: 1.5rem; border: 1px solid rgba(184,151,90,0.3); border-radius: 4px; z-index: -1; }
+  .exp-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.15; color: var(--pine); margin-bottom: 1.5rem; }
+  .exp-content h2 em { font-style: italic; color: var(--rose); }
+  .exp-content p { font-size: 0.92rem; color: #5a6e5f; line-height: 1.75; font-weight: 300; margin-bottom: 1rem; }
+
+  .accordion-list { margin: 1.5rem 0 2rem; display: flex; flex-direction: column; gap: 0.2rem; }
+  .accordion-item { border-bottom: 1px solid rgba(26,46,30,0.06); }
+  .accordion-header { width: 100%; display: flex; align-items: flex-start; text-align: left; background: none; border: none; padding: 1rem 0; cursor: pointer; font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.88rem; color: var(--pine); transition: color 0.3s; outline: none; }
+  .accordion-header:hover { color: var(--rose); }
+  .accordion-header .icon { color: var(--gold); font-size: 0.6rem; margin-top: 0.35rem; margin-right: 0.8rem; flex-shrink: 0; }
+  .accordion-header .title { flex-grow: 1; font-weight: 500; line-height: 1.4; }
+  .accordion-header .toggle-icon { font-size: 1.1rem; font-weight: 300; color: var(--mist); margin-left: 1rem; transition: transform 0.35s ease, color 0.35s; flex-shrink: 0; }
+  
+  .accordion-item.active .accordion-header .title { color: var(--rose); }
+  .accordion-item.active .accordion-header .toggle-icon { transform: rotate(45deg); color: var(--rose); }
+  
+  .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0, 1, 0, 1); }
+  .accordion-item.active .accordion-content { transition: max-height 0.5s ease-in-out; }
+  .accordion-inner { padding: 0 0 1.5rem 1.4rem; font-size: 0.84rem; color: #5a6e5f; line-height: 1.75; font-weight: 300; }
+
+  .accordion-inner ul { list-style: none; padding-left: 0; margin-bottom: 0; }
+  .accordion-inner li { display: flex; align-items: flex-start; margin-bottom: 0.6rem; }
+  .accordion-inner li:last-child { margin-bottom: 0; }
+  .accordion-inner li::before { content: '–'; margin-right: 0.6rem; color: var(--gold); font-weight: bold; flex-shrink: 0; }
+
+  .testimonials { background: var(--pine); padding: 6rem 4rem; }
+  .testimonials .section-header { padding-top: 0; }
+  .testimonials .section-header h2 { color: var(--white); }
+  .testimonials .section-header p { color: var(--mist); }
+  .testimonials .section-tag { color: var(--gold); }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+  .testimonial-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,151,90,0.15); border-radius: 4px; padding: 2rem; }
+  .stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .testimonial-card p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; font-style: italic; color: var(--fog); line-height: 1.7; margin-bottom: 1.2rem; }
+  .reviewer { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mist); }
+  .reviewer strong { color: var(--gold); display: block; font-size: 0.8rem; margin-bottom: 0.2rem; }
+
+  .cta-banner { background: linear-gradient(135deg, rgba(196,115,90,0.92), rgba(184,151,90,0.88)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80') center/cover; text-align: center; padding: 5rem 2rem; color: #fff; }
+  .cta-banner h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; margin-bottom: 1rem; }
+  .cta-banner p { font-size: 1rem; font-weight: 300; opacity: 0.88; margin-bottom: 2.5rem; max-width: 500px; margin-inline: auto; }
+
+  footer { background: var(--dark); color: var(--fog); padding: 4rem 4rem 2rem; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1.5fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(184,151,90,0.15); margin-bottom: 2rem; }
+  .footer-brand .logo { display: block; margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.82rem; color: var(--mist); line-height: 1.7; font-weight: 300; }
+  .footer-col h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; }
+  
+  /* Cập nhật đồng bộ khoảng cách và cỡ chữ cho tất cả các thẻ li trong cột footer */
+  .footer-col li { 
+    margin-bottom: 1rem; 
+    font-size: 0.85rem; 
+    line-height: 1.5; 
+    color: var(--mist);
+  }
+  
+  .footer-col a { color: var(--mist); text-decoration: none; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--fog); }
+  
+  .footer-col.contact-info li { display: flex; align-items: flex-start; gap: 0.6rem; }
+  .footer-col.contact-info strong { color: var(--gold); font-weight: 500; min-width: 65px; flex-shrink: 0; }
+
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: rgba(143,168,154,0.55); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .restaurant-grid { grid-template-columns: 1fr; padding: 0 1.5rem; }
+    .about-strip { flex-direction: column; gap: 2rem; padding: 3rem 2rem; }
+    .strip-divider { display: none; }
+    .experience-grid { grid-template-columns: 1fr; padding: 0 1.5rem; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+    .testimonials { padding: 4rem 1.5rem; }
+    .section-header { padding: 4rem 1.5rem 2rem; }
+    .menu-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Đà Lạt <span>Hẹn Sang</span></div>
+  <ul>
+    <li><a href="#restaurants">Nhà Hàng</a></li>
+    <li><a href="#experience">Trải Nghiệm</a></li>
+    <li><a href="#reviews">Đánh Giá</a></li>
+    <li><button class="nav-cta" onclick="openModal('Chọn Nhà Hàng','Vui lòng chọn nhà hàng bên dưới')">Đặt Bàn</button></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">✦ Đà Lạt · 1.500m So Với Mực Nước Biển ✦</div>
+  <h1>Hương Vị <em>Cao Nguyên</em></h1>
+  <p class="hero-sub">Khám phá những nhà hàng tinh tế nhất thành phố ngàn hoa — nơi không gian thơ mộng hòa quyện cùng ẩm thực đặc sắc của Đà Lạt.</p>
+  <div class="hero-actions">
+    <a href="#restaurants" class="btn-primary">Khám Phá Nhà Hàng</a>
+    <button onclick="openMenuModal()" class="btn-outline">Xem Thực Đơn</button>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Cuộn xuống</span>
+  </div>
+</section>
+
+<div class="about-strip">
+  <div class="stat"><div class="stat-num">12</div><div class="stat-label">Nhà Hàng Tuyển Chọn</div></div>
+  <div class="strip-divider"></div>
+  <div class="stat"><div class="stat-num">4.8</div><div class="stat-label">Đánh Giá Trung Bình</div></div>
+  <div class="strip-divider"></div>
+  <div class="stat"><div class="stat-num">5K+</div><div class="stat-label">Lượt Đặt Bàn</div></div>
+  <div class="strip-divider"></div>
+  <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Hỗ Trợ Online</div></div>
+</div>
+
+<section class="restaurants-section" id="restaurants">
+  <div class="section-header reveal">
+    <span class="section-tag">✦ Tuyển Chọn Tinh Tế ✦</span>
+    <h2>Những Nhà Hàng<br>Đáng Nhớ Nhất Đà Lạt</h2>
+    <p>Từ không gian vintage ấm cúng đến garden restaurant tràn ngập sắc xanh — mỗi nhà hàng là một câu chuyện riêng.</p>
+  </div>
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" onclick="filterCards('all',this)">Tất Cả</button>
+    <button class="filter-btn" onclick="filterCards('fine-dining',this)">Fine Dining</button>
+    <button class="filter-btn" onclick="filterCards('garden',this)">Garden</button>
+    <button class="filter-btn" onclick="filterCards('fresh',this)">Fresh</button>
+    <button class="filter-btn" onclick="filterCards('bistro',this)">Bistro & Café</button>
+  </div>
+  <div class="restaurant-grid" id="restaurantGrid">
+
+    <div class="restaurant-card reveal" data-cat="fine-dining" onclick="openModal('Memory Đà Lạt','Fine Dining tầm cao giữa lòng thành phố mộng mơ', 'Ảnh không gian/memory-dalat1.jpg', 'Tọa lạc trong một khu vườn rộng mang đậm kiến trúc hoài cổ, Memory đem đến một không gian ấm cúng, thoáng đãng với ánh đèn lấp lánh rực rỡ khi đêm về. Sự kết hợp hoàn hảo giữa thiết kế ngoài trời mát mẻ, tiếng nhạc du dương cùng những món ăn mang đậm phong vị Đà Lạt xưa sẽ mang đến cho bạn một buổi tối đầy lãng mạn và tinh tế.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/memory-dalat.jpg" alt="Memory Đà Lạt" loading="lazy">
+        <div class="card-badge">Fine Dining</div><div class="card-price">Phù hợp: Chiều - Tối</div>
+      </div>
+      <div class="card-body">
+        <h3>Memory Đà Lạt</h3>
+        <div class="card-meta">★★★★★ <span>•</span> 4.9 (312 đánh giá)</div>
+        <p class="card-desc">Không gian cổ điển hoài niệm với ánh đèn vàng ấm áp, mang đậm dấu ấn Đà Lạt xưa. Thực đơn phong phú với đặc sản cao nguyên được chế biến tinh tế, đánh thức mọi giác quan của thực khách.</p>
+        <div class="card-tags"><span class="tag">Bò Bít Tết</span><span class="tag">Rượu Vang</span><span class="tag">Không Gian Cổ</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/Qu%C3%A1n+cafe+nh%E1%BA%A1c+Tr%E1%BB%8Bnh+Acoustic+Memory+%C4%90%C3%A0+L%E1%BA%A1t+-+Memory+acoustic+Dalat+coffee/@11.945049,108.464916,16z/data=!4m9!3m8!1s0x31711302e3cea4e5:0xa9a701c25b10efd9!5m2!4m1!1i2!8m2!3d11.9450488!4d108.4649164!16s%2Fg%2F11df81gky2?hl=vi&entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Trung tâm Đà Lạt</a>
+          <div class="card-actions">
+            <a href="https://nhahangdalat.info/mon-ngon-da-lat-tai-nha-hang-memory/" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="fine-dining" onclick="openModal('Thủy Tạ Restaurant','Nhà hàng ven hồ biểu tượng của Đà Lạt', 'Ảnh không gian/thuy-ta-Restaurant1.jpg', 'Nằm vươn mình ra mặt Hồ Xuân Hương phẳng lặng, Thủy Tạ sở hữu kiến trúc nổi bật tựa như một chiếc du thuyền màu trắng thanh lịch. Không gian mở vô cùng thoáng đãng, ngập tràn ánh sáng và gió trời tự nhiên. Vừa thưởng thức bữa tối sang trọng, thực khách vừa có thể ngắm nhìn toàn cảnh trung tâm thành phố rực rỡ khi lên đèn.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/thuy-ta-restaurant.jpg" alt="Thủy Tạ" loading="lazy">
+        <div class="card-badge">Hồ Xuân Hương</div><div class="card-price">Phù hợp: Trưa - Tối</div>
+      </div>
+      <div class="card-body">
+        <h3>Thủy Tạ Restaurant</h3>
+        <div class="card-meta">★★★★★ <span>•</span> 4.8 (528 đánh giá)</div>
+        <p class="card-desc">Biểu tượng lịch sử tọa lạc ngay cạnh Hồ Xuân Hương thơ mộng. Thủy Tạ là điểm hẹn không thể bỏ qua với view hồ tuyệt đẹp và các món ăn Á–Âu trứ danh từ thập kỷ 1950, mang lại trải nghiệm trọn vẹn.</p>
+        <div class="card-tags"><span class="tag">View Hồ</span><span class="tag">Lịch Sử</span><span class="tag">Á – Âu</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/th%E1%BB%A7y+t%E1%BA%A1+restaurant+%C4%91%C3%A0+l%E1%BA%A1t/data=!4m2!3m1!1s0x317113251c10219d:0x569fe8a20c753848?sa=X&ved=1t:242&ictx=111" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Hồ Xuân Hương</a>
+          <div class="card-actions">
+            <a href="https://thuytadamsen.vn/thuc-don/" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="fine-dining" onclick="openModal('Góc Hà Thành','Hương vị miền Bắc giữa lòng Đà Lạt', 'Ảnh không gian/goc-ha-thanh1.jpg', 'Đưa bạn về với một Hà Nội xưa cũ qua những bộ bàn ghế tre trúc mộc mạc, ánh đèn lồng nón lá ấm áp và những bức tranh phố cổ bám màu thời gian. Không gian nhỏ nhắn, thân thuộc cùng sự tiếp đón nồng hậu này sẽ làm nền tảng hoàn hảo cho những mâm cơm chuẩn vị Bắc Bộ ấm cúng bên gia đình.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/goc-ha-thanh.jpeg" alt="Góc Hà Thành" loading="lazy">
+        <div class="card-badge">Bắc Bộ</div><div class="card-price">Phù hợp: Cả ngày</div>
+      </div>
+      <div class="card-body">
+        <h3>Góc Hà Thành</h3>
+        <div class="card-meta">★★★★☆ <span>•</span> 4.6 (184 đánh giá)</div>
+        <p class="card-desc">Một góc nhỏ của Hà Nội giữa phố núi — không gian ấm cúng với decor vintage kiểu phố cổ, phục vụ những món đặc sản miền Bắc chuẩn vị từ bún thang, chả cá đến nem rán giòn rụm khó quên.</p>
+        <div class="card-tags"><span class="tag">Bắc Bộ</span><span class="tag">Vintage</span><span class="tag">Gia Đình</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/G%C3%B3c+H%C3%A0+Th%C3%A0nh+(%C4%90%C3%A0+L%E1%BA%A1t)/data=!4m2!3m1!1s0x317113294b216aa5:0xaca610d63e08ddc0?sa=X&ved=1t:242&ictx=111" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Khu phố cổ</a>
+          <div class="card-actions">
+            <a href="https://www.facebook.com/molaogoica/?locale=vi_VN" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="fresh" onclick="openModal('Léguda Buffet Rau Đà Lạt','Buffet rau sạch đặc sản xanh mát', 'Ảnh không gian/leguda-buffet-rau-da-lat1.jpg', 'Sở hữu tầm nhìn tuyệt đẹp bao quát toàn cảnh đồi thông Đà Lạt, Léguda mang đến một không gian nhà hàng vô cùng rộng rãi, sạch sẽ với hệ thống bàn ghế gỗ hiện đại. Trần nhà cao thoáng cùng mảng xanh trang trí tạo cảm giác thư thái tuyệt đối khi bạn nhúng những lá rau tươi rói vào nồi lẩu nghi ngút khói giữa lưng chừng đèo.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/leguda-buffet-rau-da-lat.jpg" alt="Léguda Buffet" loading="lazy">
+        <div class="card-badge">Fresh</div><div class="card-price">Phù hợp: Trưa - Chiều -Tối</div>
+      </div>
+      <div class="card-body">
+        <h3>Léguda Buffet Rau Đà Lạt</h3>
+        <div class="card-meta">★★★★☆ <span>•</span> 4.7 (641 đánh giá)</div>
+        <p class="card-desc">Buffet rau sạch Đà Lạt độc đáo với hơn 80 món chế biến từ rau củ quả tươi thu hoạch mỗi ngày từ các nông trại địa phương. Thiên đường cho người yêu thích ăn chay và thực đơn xanh lành mạnh.</p>
+        <div class="card-tags"><span class="tag">Rau Sạch</span><span class="tag">Healthy</span><span class="tag">Fresh</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/L%C3%A9guda+Buffet+Rau+%C4%90%C3%A0+L%E1%BA%A1t/data=!4m2!3m1!1s0x31715137533034a7:0xf1c8a5c799684e0c?sa=X&ved=1t:242&ictx=111" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Phường 3, Đà Lạt</a>
+          <div class="card-actions">
+            <a href="https://www.facebook.com/legudadalat/?locale=vi_VN" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="bistro" onclick="openModal('Tiệm Ăn Đà Lạt Phố','Nét bình dị của phố phường Đà Lạt', 'Ảnh không gian/tiem-an-da-lat-pho1.jpg', 'Đậm chất bình dị và gần gũi với những khung cửa sổ hình vòm mở rộng ra góc phố nhộn nhịp. Thiết kế mang hơi hướng retro với tông màu vàng ấm kết hợp khung cửa xanh lá cổ điển, bàn ghế gỗ đầm ấm. Tất cả tạo nên cảm giác như bạn đang dùng một bữa ăn dung dị ngay tại nhà một người bạn thân thiết ở Đà Lạt.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/tiem-an-da-lat-pho.jpg" alt="Tiệm Ăn Đà Lạt Phố" loading="lazy">
+        <div class="card-badge">Local Dining</div><div class="card-price">Phù hợp: Sáng - Chiều</div>
+      </div>
+      <div class="card-body">
+        <h3>Tiệm Ăn Đà Lạt Phố</h3>
+        <div class="card-meta">★★★★☆ <span>•</span> 4.5 (293 đánh giá)</div>
+        <p class="card-desc">Quán ăn dân dã mang hơi thở phố thị Đà Lạt với những món ăn quen thuộc được nâng tầm bằng nguyên liệu địa phương tươi ngon. Bầu không khí thân mật như ở nhà cùng mức giá vô cùng bình dân.</p>
+        <div class="card-tags"><span class="tag">Local</span><span class="tag">Bình Dân</span><span class="tag">Đặc Sản</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/Ti%E1%BB%87m+%C4%82n+%C4%90%C3%A0+L%E1%BA%A1t+Ph%E1%BB%91/data=!4m2!3m1!1s0x3171138e19ed3533:0x11573ccdc6e2a9cd?sa=X&ved=1t:242&ictx=111" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Phường 1, Đà Lạt</a>
+          <div class="card-actions">
+            <a href="https://online.fliphtml5.com/zrawk/mags/#p=1" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="garden" onclick="openModal('Túi Mơ To Garden Restaurant','Garden restaurant xanh mát độc đáo', 'Ảnh không gian/tui-mo-to-garden-restaurant1.jpg', 'Một khu vườn mơ mộng thực sự với góc view đắt giá nhìn thẳng xuống thung lũng nhà lồng rực sáng. Thiết kế ngoài trời với những dãy bàn gỗ mộc mạc đặt trên bãi cỏ xanh mát, dưới ánh đèn dây tóc lung linh. Khi sương buông xuống, không gian trở nên cực kỳ lãng mạn, hoàn hảo cho những buổi hẹn hò hay thưởng thức âm nhạc Acoustic nhẹ nhàng.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/tui-mo-to-garden-restaurant.jpg" alt="Túi Mơ To Garden" loading="lazy">
+        <div class="card-badge">Garden</div><div class="card-price">Phù hợp: Chiều - Tối</div>
+      </div>
+      <div class="card-body">
+        <h3>Túi Mơ To Garden Restaurant</h3>
+        <div class="card-meta">★★★★★ <span>•</span> 4.8 (417 đánh giá)</div>
+        <p class="card-desc">Ẩn mình trong khu vườn xanh mát rộng lớn, Túi Mơ To mang đến trải nghiệm ẩm thực giữa thiên nhiên. Các bungalow nhỏ tạo nên một không gian riêng tư, lý tưởng cho các buổi hẹn hò hay thư giãn cuối tuần.</p>
+        <div class="card-tags"><span class="tag">Vườn Xanh</span><span class="tag">Riêng Tư</span><span class="tag">Lãng Mạn</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/Nh%C3%A0+h%C3%A0ng+T%C3%BAi+M%C6%A1+To+Garden+Restaurant/data=!4m2!3m1!1s0x3171139b0f42dba3:0xd677f74412b36e68?sa=X&ved=1t:242&ictx=111" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Đ. Hoa Hồng</a>
+          <div class="card-actions">
+            <a href="https://www.facebook.com/tuimotogarden/?locale=vi_VN" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="garden" onclick="openModal('Bếp Vườn Đà Lạt','Farm-to-table giữa khu vườn Đà Lạt', 'Ảnh không gian/bep-vuon-da-lat1.jpg', 'Mang đến trải nghiệm mộc mạc nhất với không gian mở ngay cạnh thung lũng xanh. Mái che trong suốt đón ánh sáng tự nhiên, những băng ghế gỗ dài và bóng cây vươn thẳng vào bên trong khu vực dùng bữa. Sự hòa quyện trọn vẹn với thiên nhiên này giúp thực khách cảm nhận rõ nét nhất sự trong lành và tươi mới của triết lý ẩm thực từ nông trại đến bàn ăn.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/bep-vuon-da-lat.jpg" alt="Bếp Vườn" loading="lazy">
+        <div class="card-badge">Farm-to-Table</div><div class="card-price">Phù hợp: Sáng - Chiều</div>
+      </div>
+      <div class="card-body">
+        <h3>Bếp Vườn Đà Lạt</h3>
+        <div class="card-meta">★★★★★ <span>•</span> 4.9 (189 đánh giá)</div>
+        <p class="card-desc">Triết lý farm-to-table thuần túy — mọi nguyên liệu đều được thu hoạch từ khu vườn của nhà hàng ngay trong ngày. Thực đơn thay đổi theo mùa, tôn vinh hương vị nguyên sơ của đất cao nguyên qua từng món ăn chăm chút.</p>
+        <div class="card-tags"><span class="tag">Farm-to-Table</span><span class="tag">Theo Mùa</span><span class="tag">Hữu Cơ</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/B%E1%BA%BFp+v%C6%B0%E1%BB%9Dn+%C4%90%C3%A0+L%E1%BA%A1t-+Garden+to+table/data=!4m2!3m1!1s0x0:0x34e0c05770a1f20d?sa=X&ved=1t:2428&ictx=111" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Ngoại ô Đà Lạt</a>
+          <div class="card-actions">
+            <a href="https://www.facebook.com/p/B%E1%BA%BFp-V%C6%B0%E1%BB%9Dn-%C4%90%C3%A0-L%E1%BA%A1t-61588059641841/" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="fine-dining" onclick="openModal('Đà Lạt House','Villa sang trọng với ẩm thực đỉnh cao', 'Ảnh không gian/da-lat-house1.jpg', 'Bên trong không gian rộng lớn của ngôi biệt thự, Đà Lạt House gây ấn tượng với phong cách bài trí sảnh tiệc bề thế. Những hàng cột được trang trí phá cách, trần ốp gỗ phản chiếu ánh đèn vàng rực rỡ và những bộ bàn ghế bọc khăn tinh tươm. Một địa điểm lý tưởng để tổ chức các buổi gặp gỡ đại gia đình hay những bữa tiệc thiết đãi sang trọng.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/da-lat-house.jpg" alt="Đà Lạt House" loading="lazy">
+        <div class="card-badge">Signature</div><div class="card-price">Phù hợp: Trưa - Tối</div>
+      </div>
+      <div class="card-body">
+        <h3>Đà Lạt House</h3>
+        <div class="card-meta">★★★★★ <span>•</span> 4.9 (276 đánh giá)</div>
+        <p class="card-desc">Một biệt thự Pháp thuộc cổ được phục dựng tinh tế thành không gian ẩm thực cao cấp nhất Đà Lạt. Thực đơn fusion Pháp–Việt với những sáng tạo bất ngờ từ đội ngũ đầu bếp hàng đầu, đánh thức trọn vẹn vị giác.</p>
+        <div class="card-tags"><span class="tag">Pháp–Việt</span><span class="tag">Luxury</span><span class="tag">Biệt Thự Cổ</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/Nh%C3%A0+H%C3%A0ng+%C4%90%C3%A0+L%E1%BA%A1t+House/@11.9477493,108.4635064,17z/data=!3m1!4b1!4m6!3m5!1s0x317112fd52e69cdf:0xb09d28626397c728!8m2!3d11.9477493!4d108.4635064!16s%2Fg%2F1v46xvp2?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Đ. Trần Phú</a>
+          <div class="card-actions">
+            <a href="https://nh-hng-lt-house.wheree.com/menu" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="fine-dining" onclick="openModal('Chef\'s Dalat','Sáng tạo ẩm thực của những đầu bếp tài ba', 'Ảnh không gian/chefs-dalat1.jpg', 'Mang đậm chất nghệ thuật thanh lịch và duy mỹ. Không gian Chef\'s Dalat sử dụng tông màu trắng chủ đạo, kết hợp với các vòm cửa mềm mại, khăn trải bàn trắng muốt và những lọ hoa tươi điểm xuyết tinh tế. Sự tĩnh lặng, riêng tư tuyệt đối này sẽ giúp mọi giác quan của thực khách được đánh thức trọn vẹn để thưởng thức những kiệt tác ẩm thực.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/chefs-dalat.jpg" alt="Chef's Dalat" loading="lazy">
+        <div class="card-badge">Chef's Table</div><div class="card-price">Phù hợp: Cả ngày</div>
+      </div>
+      <div class="card-body">
+        <h3>Chef's Dalat</h3>
+        <div class="card-meta">★★★★★ <span>•</span> 5.0 (98 đánh giá)</div>
+        <p class="card-desc">Trải nghiệm chef's table đỉnh cao với thực đơn tasting menu 7 món — hành trình ẩm thực đưa thực khách khám phá những tầng hương vị tinh tế nhất của vùng đất cao nguyên Lâm Viên.</p>
+        <div class="card-tags"><span class="tag">Tasting Menu</span><span class="tag">Exclusive</span><span class="tag">Đặt Trước</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/Chef's+Dalat/data=!4m2!3m1!1s0x3171135cd246c135:0x66b188bfbb5d4347?sa=X&ved=1t:242&ictx=111" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Đ. Yersin</a>
+          <div class="card-actions">
+            <a href="https://chefsdalat.com/menu/" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="bistro" onclick="openModal('Peace Bistro','Bình yên trong từng ly cà phê và suất ăn', 'Ảnh không gian/peace-bistro1.jpg', 'Đúng như tên gọi, đây là một góc nhỏ bình yên, tách biệt khỏi sự ồn ào. Khu vực ngồi ngoài hiên vô cùng thơ mộng với nền gạch hoa văn họa tiết cổ điển, những tán cây hoa đào vươn mình đan xen cùng ánh đèn lồng rực rỡ đầy lãng mạn. Một chốn dừng chân hoàn hảo để nhâm nhi tách cà phê ấm và thưởng thức một bữa tối dịu dàng.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/peace-bistro.jpg" alt="Peace Bistro" loading="lazy">
+        <div class="card-badge">Bistro</div><div class="card-price">Phù hợp: Sáng - Chiều - Tối</div>
+      </div>
+      <div class="card-body">
+        <h3>Peace Bistro</h3>
+        <div class="card-meta">★★★★☆ <span>•</span> 4.6 (352 đánh giá)</div>
+        <p class="card-desc">Quán bistro nhỏ xinh với tinh thần Scandinavia — không gian tối giản, ánh sáng tự nhiên chan hòa và thực đơn brunch/all-day dining đầy sáng tạo, kết hợp cùng những ly cà phê Đà Lạt thơm ngon nhất phố.</p>
+        <div class="card-tags"><span class="tag">All-Day Dining</span><span class="tag">Cà Phê</span><span class="tag">Scandinavia</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/Da+Lat+Peace+Bistro/data=!4m2!3m1!1s0x0:0xfdc7dbbb9c434a72?sa=X&ved=1t:2428&ictx=111" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Phường 2, Đà Lạt</a>
+          <div class="card-actions">
+            <a href="https://dalatpeacebistro.com/category/thuc-don/" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="fine-dining" onclick="openModal('Nhà hàng Song Châu','Ẩm thực Hoa trứ danh giữa phố núi', 'Ảnh không gian/nha-hang-song-chau1.jpg', 'Mang đậm dấu ấn kiến trúc Á Đông với kết cấu nhà rường gỗ tinh xảo, Song Châu mở ra một không gian vô cùng bề thế và ấm cúng. Những chiếc đèn lồng đỏ đặc trưng soi bóng xuống những bộ bàn ăn tròn rộng rãi, biến nơi đây thành địa điểm lý tưởng nhất cho những buổi đại tiệc sum họp gia đình, cùng nhau thưởng thức dimsum và hải sản thượng hạng.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/nha-hang-song-chau.jpg" alt="Nhà hàng Song Châu" loading="lazy">
+        <div class="card-badge">Hoa & Hải Sản</div><div class="card-price">Phù hợp: Trưa - Tối</div>
+      </div>
+      <div class="card-body">
+        <h3>Nhà hàng Song Châu</h3>
+        <div class="card-meta">★★★★☆ <span>•</span> 4.7 (445 đánh giá)</div>
+        <p class="card-desc">Di sản ẩm thực người Hoa tại Đà Lạt với những công thức nấu ăn được truyền qua nhiều thế hệ. Dimsum sáng cuối tuần và hải sản tươi sống là điểm nhấn không thể bỏ qua cho những buổi tiệc sum vầy gia đình.</p>
+        <div class="card-tags"><span class="tag">Dimsum</span><span class="tag">Hải Sản</span><span class="tag">Gia Đình</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps?ll=11.977679,108.44857&z=15&t=m&hl=vi&gl=US&mapclient=embed&cid=12826943190267472862" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Phường 6, Đà Lạt</a>
+          <div class="card-actions">
+            <a href="https://songchaurestaurant.com/" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurant-card reveal" data-cat="bistro" onclick="openModal('Bina Bina','Ẩm thực Trung Đông phong vị độc đáo', 'Ảnh không gian/bina-bina1.jpg', 'Một sự kết hợp độc đáo giữa kiến trúc lồng kính hiện đại và những chi tiết trang trí rực rỡ sắc màu. Không gian Bina Bina toát lên sự trẻ trung, huyền bí với ánh sáng vàng dịu mắt và quầy bar cực kỳ ấn tượng. Mọi góc nhỏ tại đây đều tạo nên những bức ảnh tuyệt đẹp trong khi bạn nhâm nhi ly cocktail và món ăn Địa Trung Hải đầy gọi mời.')">
+      <div class="card-img">
+        <img src="Ảnh giới thiệu/bina-bina.jpg" alt="Bina Bina" loading="lazy">
+        <div class="card-badge">Fusion</div><div class="card-price">Phù hợp: Trưa - Tối</div>
+      </div>
+      <div class="card-body">
+        <h3>Bina Bina</h3>
+        <div class="card-meta">★★★★☆ <span>•</span> 4.7 (228 đánh giá)</div>
+        <p class="card-desc">Không gian Trung Đông đầy màu sắc với những chiếc đèn lồng lung linh và thảm dệt thủ công. Thực đơn fusion độc đáo mang đến hương vị Địa Trung Hải cùng nguồn nguyên liệu bản địa tươi mới mỗi ngày.</p>
+        <div class="card-tags"><span class="tag">Trung Đông</span><span class="tag">Fusion</span><span class="tag">Cocktail</span></div>
+        <div class="card-footer">
+          <a href="https://www.google.com/maps/place/Nh%C3%A0+h%C3%A0ng+rau+h%E1%BA%A5p+thu%E1%BB%B7+nhi%E1%BB%87t+-+Bina+Bina/@11.9349381,108.4276684,15z/data=!4m6!3m5!1s0x3171136edbabbdb5:0xb3e4fd4a4841d4c1!8m2!3d11.9349381!4d108.4276684!16s%2Fg%2F11vy6lh4l8?entry=tts&g_ep=EgoyMDI0MDcwOS4wKgBIAVAD" target="_blank" class="card-location" onclick="event.stopPropagation()">📍 Đ. Nguyễn Văn Trỗi</a>
+          <div class="card-actions">
+            <a href="https://drive.google.com/drive/folders/1P2w_tX_taqFGF2A8E6sgLtg9RpQP3VBY" target="_blank" class="btn-menu" onclick="event.stopPropagation()">Thực Đơn</a>
+            <button class="btn-book">Đặt Bàn</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="experience-section" id="experience">
+  <div class="section-header reveal">
+    <span class="section-tag">✦ Vì Sao Chọn Chúng Tôi ✦</span>
+    <h2>Trải Nghiệm<br>Đặt Bàn Khác Biệt</h2>
+  </div>
+  <div class="experience-grid">
+    <div class="exp-image reveal">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Trải nghiệm nhà hàng">
+    </div>
+    <div class="exp-content reveal">
+      <h2>Mỗi Bữa Ăn Là Một<br><em>Ký Ức Đẹp</em></h2>
+      <p>Chúng tôi không chỉ giúp bạn tìm một chỗ ngồi — chúng tôi giúp bạn tạo nên những khoảnh khắc trọn vẹn giữa thành phố sương mù.</p>
+      <p>Mỗi nhà hàng trong danh sách của Đà Lạt Hẹn Sang đều được kiểm định kỹ lưỡng về chất lượng ẩm thực, không gian và dịch vụ trước khi được giới thiệu đến bạn.</p>
+      
+      <div class="accordion-list">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="icon">✦</span>
+            <span class="title">Đặt bàn trực tuyến 24/7, xác nhận tức thì qua SMS & Email</span>
+            <span class="toggle-icon">＋</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <ul>
+                <li>Hệ thống tiếp nhận yêu cầu và xử lý tự động toàn thời gian.</li>
+                <li>Gửi mã xác nhận thành công ngay lập tức qua tin nhắn điện thoại và thư điện tử.</li>
+                <li>Cung cấp đường dẫn tra cứu trạng thái đơn đặt bàn theo thời gian thực.</li>
+                <li>Hỗ trợ thay đổi thông tin số lượng khách hoặc giờ đến trực tiếp trên hệ thống.</li>
+                <li>Bảo mật tuyệt đối thông tin cá nhân và dữ liệu giao dịch của khách hàng.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="icon">✦</span>
+            <span class="title">Tư vấn thực đơn và không gian phù hợp với dịp đặc biệt</span>
+            <span class="toggle-icon">＋</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <ul>
+                <li>Đội ngũ chuyên viên hỗ trợ lựa chọn vị trí ngồi tối ưu theo tính chất buổi gặp mặt.</li>
+                <li>Cung cấp hình ảnh thực tế và sơ đồ bố trí không gian tại từng nhà hàng.</li>
+                <li>Thiết kế thực đơn cá nhân hóa dựa trên yêu cầu về chế độ dinh dưỡng.</li>
+                <li>Gợi ý các món ăn đặc trưng theo mùa và nghệ thuật phối hợp cùng các loại thức uống.</li>
+                <li>Lưu trữ sở thích ẩm thực để nâng cao chất lượng phục vụ cho các lần đặt bàn tiếp theo.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="icon">✦</span>
+            <span class="title">Hỗ trợ đặt tiệc riêng, trang trí sinh nhật và kỷ niệm</span>
+            <span class="toggle-icon">＋</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <ul>
+                <li>Khảo sát và đề xuất các ý tưởng trang trí không gian bàn tiệc theo chủ đề.</li>
+                <li>Cung cấp gói dịch vụ hoa tươi, bánh kem nghệ thuật và nến thơm cao cấp.</li>
+                <li>Bố trí hệ thống ánh sáng và âm nhạc riêng biệt cho khu vực tổ chức sự kiện.</li>
+                <li>Hỗ trợ thiết kế và in ấn thiệp chúc mừng mang dấu ấn cá nhân.</li>
+                <li>Phân công nhân viên phục vụ chuyên trách đảm bảo tiến trình buổi tiệc diễn ra hoàn hảo.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="icon">✦</span>
+            <span class="title">Chính sách hủy linh hoạt, hoàn tiền minh bạch</span>
+            <span class="toggle-icon">＋</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <ul>
+                <li>Cho phép hủy hoặc dời lịch miễn phí trước 12 giờ so với thời gian nhận bàn.</li>
+                <li>Thao tác yêu cầu hoàn tiền được thực hiện trực tiếp trên nền tảng quản lý.</li>
+                <li>Quy trình xét duyệt tự động và hệ thống tiến hành đối soát ngay lập tức.</li>
+                <li>Tiền đặt cọc được chuyển trả về tài khoản gốc trong vòng 24 đến 48 giờ làm việc.</li>
+                <li>Cung cấp hóa đơn điện tử và biên lai xác nhận giao dịch hủy thành công.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="icon">✦</span>
+            <span class="title">Ưu đãi độc quyền cho thành viên đăng ký</span>
+            <span class="toggle-icon">＋</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <ul>
+                <li>Tặng mã giảm giá trực tiếp 10% áp dụng cho một lần đặt bàn trong tháng.</li>
+                <li>Phân phối mã khuyến mãi định kỳ vào các dịp lễ và tháng sinh nhật của thành viên.</li>
+                <li>Miễn phí một món tráng miệng đặc biệt hoặc thức uống chào mừng tại các nhà hàng đối tác.</li>
+                <li>Ưu tiên quyền lựa chọn các vị trí có tầm nhìn đẹp nhất vào những khung giờ cao điểm.</li>
+                <li>Cấp quyền tham gia các chương trình trải nghiệm thực đơn giới hạn dành riêng cho hạng thẻ thành viên.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="openModal('Chọn Nhà Hàng','Vui lòng chọn nhà hàng bên dưới')">Đặt Bàn Ngay</button>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="reviews">
+  <div class="section-header reveal">
+    <span class="section-tag">✦ Cảm Nhận Thực Khách ✦</span>
+    <h2>Họ Đã Nói Gì</h2>
+    <p>Hơn 5.000 thực khách đã tin tưởng Đà Lạt Hẹn Sang để tạo nên những kỷ niệm đáng nhớ.</p>
+  </div>
+  <div class="testimonial-grid reveal">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Đặt bàn tại Chef's Dalat qua website siêu nhanh. Tối kỷ niệm 5 năm của chúng tôi thật hoàn hảo — không gian tuyệt đẹp, món ăn xuất sắc và dịch vụ chu đáo đến từng chi tiết."</p>
+      <div class="reviewer"><strong>Minh Thư & Hoàng Anh</strong>TP. Hồ Chí Minh · Tháng 3/2026</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Lần đầu đến Đà Lạt mà không biết ăn ở đâu, nhờ Đà Lạt Hẹn Sang tôi khám phá được Túi Mơ To — khu vườn đẹp như tranh, thức ăn ngon và nhân viên rất thân thiện."</p>
+      <div class="reviewer"><strong>Thanh Hà</strong>Hà Nội · Tháng 5/2026</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Léguda Buffet Rau Đà Lạt là phát hiện hay nhất của chuyến đi! Đặt bàn qua app, được nhắn tin xác nhận ngay. Buffet rau sạch phong phú không tưởng, giá lại rất hợp lý."</p>
+      <div class="reviewer"><strong>Gia đình Phúc Nguyên</strong>Đà Nẵng · Tháng 4/2026</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="reveal">
+    <h2>Bắt Đầu Hành Trình Ẩm Thực<br>Của Bạn Hôm Nay</h2>
+    <p>Đặt bàn dễ dàng, xác nhận ngay lập tức — để mỗi bữa ăn tại Đà Lạt trở thành kỷ niệm không quên.</p>
+    <button class="btn-primary" onclick="openModal('Chọn Nhà Hàng','Vui lòng chọn nhà hàng bên dưới')">Đặt Bàn Miễn Phí</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">Đà Lạt <span>Hẹn Sang</span></div>
+      <p>Nền tảng đặt bàn trực tuyến hàng đầu dành riêng cho những nhà hàng được tuyển chọn tinh tế tại thành phố Đà Lạt — thành phố của sương mù, hoa và hương vị.</p>
+    </div>
+    
+    <div class="footer-col contact-info">
+      <h4>Liên Hệ Tại Văn Phòng</h4>
+      <ul>
+        <li><strong>Địa chỉ:</strong> <span>123 Trần Phú, Phường 3, Đà Lạt</span></li>
+        <li><strong>Hotline:</strong> <span>0901 234 567 (24/7)</span></li>
+        <li><strong>Email:</strong> <span>dalathensang@gmail.com</span></li>
+        <li><strong>Mở cửa:</strong> <span>08:00 - 22:00 hàng ngày</span></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Hỗ Trợ</h4>
+      <ul>
+        <li><a href="#">Chính Sách Hủy</a></li>
+        <li><a href="#">Câu Hỏi Thường Gặp</a></li>
+        <li><a href="#">Đăng Ký Nhà Hàng</a></li>
+        <li><a href="#">Điều Khoản Sử Dụng</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Đà Lạt Hẹn Sang. Bảo lưu mọi quyền.</span>
+    <span>Được làm với ♥ từ thành phố ngàn hoa</span>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="bookingModal">
+    <div class="modal-header">
+      <div>
+        <h3 id="modalTitle">Đặt Bàn</h3>
+        <p id="modalSub">Điền thông vị để hoàn tất đặt bàn</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      
+      <div class="modal-interior" id="modalInteriorSection">
+         <img src="" id="modalInteriorImg" class="modal-interior-img" alt="Không gian nhà hàng">
+         <h4 class="modal-interior-title" id="modalInteriorTitle">Không gian bên trong của...</h4>
+         <p class="modal-interior-desc" id="modalInteriorDesc">Mô tả chi tiết trải nghiệm...</p>
+      </div>
+
+      <div class="form-group">
+        <label>Nhà Hàng</label>
+        <select id="formRestaurant">
+          <option value="">-- Vui lòng chọn nhà hàng --</option>
+          <option value="Memory Đà Lạt">Memory Đà Lạt</option>
+          <option value="Thủy Tạ Restaurant">Thủy Tạ Restaurant</option>
+          <option value="Góc Hà Thành">Góc Hà Thành</option>
+          <option value="Léguda Buffet Rau Đà Lạt">Léguda Buffet Rau Đà Lạt</option>
+          <option value="Tiệm Ăn Đà Lạt Phố">Tiệm Ăn Đà Lạt Phố</option>
+          <option value="Túi Mơ To Garden Restaurant">Túi Mơ To Garden Restaurant</option>
+          <option value="Bếp Vườn Đà Lạt">Bếp Vườn Đà Lạt</option>
+          <option value="Đà Lạt House">Đà Lạt House</option>
+          <option value="Chef's Dalat">Chef's Dalat</option>
+          <option value="Peace Bistro">Peace Bistro</option>
+          <option value="Nhà hàng Song Châu">Nhà hàng Song Châu</option>
+          <option value="Bina Bina">Bina Bina</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Họ & Tên</label><input type="text" placeholder="Nguyễn Văn A" id="formName"></div>
+        <div class="form-group"><label>Số Điện Thoại</label><input type="tel" placeholder="0901 234 567" id="formPhone"></div>
+      </div>
+      
+      <div class="form-group">
+        <label>Email (Không bắt buộc)</label>
+        <input type="email" placeholder="Ví dụ: ten@gmail.com" id="formEmail">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group"><label>Ngày</label><input type="date" id="formDate"></div>
+        <div class="form-group"><label>Giờ</label>
+          <select id="formTime">
+            <option value="">Chọn giờ</option>
+            <option>11:00</option><option>11:30</option><option>12:00</option><option>12:30</option>
+            <option>13:00</option><option>17:30</option><option>18:00</option><option>18:30</option>
+            <option>19:00</option><option>19:30</option><option>20:00</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Số Người</label>
+          <select>
+            <option>1 người</option><option>2 người</option><option>3 người</option>
+            <option>4 người</option><option>5 người</option><option>6 người</option>
+            <option>7–10 người</option><option>Trên 10 người</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Dịp Đặc Biệt</label>
+          <select>
+            <option>Không có</option><option>Sinh Nhật 🎂</option>
+            <option>Kỷ Niệm 💕</option><option>Hẹn Hò 🌹</option>
+            <option>Tiệc Gia Đình 👨‍👩‍👧‍👦</option><option>Tiệc Công Ty 🏢</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label>Yêu Cầu Đặc Biệt</label>
+        <textarea placeholder="Dị ứng thực phẩm, trang trí bàn, yêu cầu về vị trí ngồi..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitBooking()">Xác Nhận Đặt Bàn</button>
+      <div class="success-msg" id="successMsg">
+        <div style="font-size:2rem;margin-bottom:0.8rem">🎉</div>
+        <h4>Đặt Bàn Thành Công!</h4>
+        <p>Chúng tôi đã ghi nhận yêu cầu của bạn. Xác nhận sẽ được gửi qua SMS trong vài phút.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="menuModalOverlay" onclick="closeMenuModalOutside(event)">
+  <div class="modal" id="menuModal">
+    <div class="modal-header">
+      <div>
+        <h3>Thực Đơn Các Nhà Hàng</h3>
+        <p>Chọn nhà hàng để xem chi tiết thực đơn</p>
+      </div>
+      <button class="modal-close" onclick="closeMenuModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="menu-list">
+        <a href="https://nhahangdalat.info/mon-ngon-da-lat-tai-nha-hang-memory/" target="_blank" class="menu-list-item">
+          <h4>Memory Đà Lạt</h4>
+          <p>Đặc sản, ấm cúng, gia đình</p>
+        </a>
+        <a href="https://thuytadamsen.vn/thuc-don/" target="_blank" class="menu-list-item">
+          <h4>Thủy Tạ Restaurant</h4>
+          <p>View hồ, lịch sử, Á - Âu</p>
+        </a>
+        <a href="https://www.facebook.com/molaogoica/?locale=vi_VN" target="_blank" class="menu-list-item">
+          <h4>Góc Hà Thành</h4>
+          <p>Bắc Bộ, vintage, gia đình</p>
+        </a>
+        <a href="https://www.facebook.com/legudadalat/?locale=vi_VN" target="_blank" class="menu-list-item">
+          <h4>Léguda Buffet Rau Đà Lạt</h4>
+          <p>Rau sạch, healthy, fresh</p>
+        </a>
+        <a href="https://online.fliphtml5.com/zrawk/mags/#p=1" target="_blank" class="menu-list-item">
+          <h4>Tiệm Ăn Đà Lạt Phố</h4>
+          <p>Local, bình dân, đặc sản</p>
+        </a>
+        <a href="https://www.facebook.com/tuimotogarden/?locale=vi_VN" target="_blank" class="menu-list-item">
+          <h4>Túi Mơ To Garden</h4>
+          <p>Vườn xanh, riêng tư, lãng mạn</p>
+        </a>
+        <a href="https://www.facebook.com/p/B%E1%BA%BFp-V%C6%B0%E1%BB%9Dn-%C4%90%C3%A0-L%E1%BA%A1t-61588059641841/" target="_blank" class="menu-list-item">
+          <h4>Bếp Vườn Đà Lạt</h4>
+          <p>Farm-to-table, theo mùa, hữu cơ</p>
+        </a>
+        <a href="https://nh-hng-lt-house.wheree.com/menu" target="_blank" class="menu-list-item">
+          <h4>Đà Lạt House</h4>
+          <p>Pháp - Việt, luxury, biệt thự cổ</p>
+        </a>
+        <a href="https://chefsdalat.com/menu/" target="_blank" class="menu-list-item">
+          <h4>Chef's Dalat</h4>
+          <p>Tasting menu, exclusive, đặt trước</p>
+        </a>
+        <a href="https://dalatpeacebistro.com/category/thuc-don/" target="_blank" class="menu-list-item">
+          <h4>Peace Bistro</h4>
+          <p>All-day dining, cà phê, Scandinavia</p>
+        </a>
+        <a href="https://songchaurestaurant.com/" target="_blank" class="menu-list-item">
+          <h4>Nhà hàng Song Châu</h4>
+          <p>Dimsum, hải sản, gia đình</p>
+        </a>
+        <a href="https://drive.google.com/drive/folders/1P2w_tX_taqFGF2A8E6sgLtg9RpQP3VBY" target="_blank" class="menu-list-item">
+          <h4>Bina Bina</h4>
+          <p>Trung Đông, fusion, cocktail</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* --- JS Xử Lý Booking Modal & Khóa Lựa Chọn --- */
+  function openModal(name, sub, imgSrc, desc) {
+    document.getElementById('modalTitle').textContent = name;
+    document.getElementById('modalSub').textContent = sub;
+    
+    const resSelect = document.getElementById('formRestaurant');
+    
+    if (name === 'Chọn Nhà Hàng') {
+      resSelect.value = '';
+      resSelect.disabled = false;
+      resSelect.style.cursor = 'pointer';
+    } else {
+      resSelect.value = name;
+      resSelect.disabled = true;
+      resSelect.style.cursor = 'not-allowed';
+    }
+
+    document.getElementById('successMsg').classList.remove('show');
+    
+    const interiorSection = document.getElementById('modalInteriorSection');
+    if (imgSrc && desc) {
+      document.getElementById('modalInteriorImg').src = imgSrc;
+      document.getElementById('modalInteriorTitle').textContent = 'Không gian bên trong của ' + name;
+      document.getElementById('modalInteriorDesc').textContent = desc;
+      interiorSection.style.display = 'block';
+    } else {
+      interiorSection.style.display = 'none';
+    }
+
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('formDate').min = today;
+  }
+  
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function submitBooking() {
+    const restaurant = document.getElementById('formRestaurant').value;
+    const name = document.getElementById('formName').value.trim();
+    const phone = document.getElementById('formPhone').value.trim();
+    const date = document.getElementById('formDate').value;
+    const time = document.getElementById('formTime').value;
+    
+    if (!restaurant) {
+      alert('Vui lòng chọn nhà hàng.');
+      return;
+    }
+    if (!name || !phone || !date || !time) {
+      alert('Vui lòng điền đầy đủ: Họ tên, Số điện thoại, Ngày và Giờ.');
+      return;
+    }
+    
+    document.getElementById('successMsg').classList.add('show');
+    setTimeout(closeModal, 3000);
+  }
+
+  /* --- JS Xử Lý Menu Modal --- */
+  function openMenuModal() {
+    document.getElementById('menuModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenuModal() {
+    document.getElementById('menuModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeMenuModalOutside(e) {
+    if (e.target === document.getElementById('menuModalOverlay')) closeMenuModal();
+  }
+
+  /* --- Các chức năng khác --- */
+  function filterCards(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.restaurant-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  
+  document.addEventListener('keydown', e => { 
+    if (e.key === 'Escape') {
+      closeModal();
+      closeMenuModal();
+    }
+  });
+
+  // Xử lý hiệu ứng danh sách Accordion
+  document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+      const currentItem = button.parentElement;
+      const currentContent = currentItem.querySelector('.accordion-content');
+      const isActive = currentItem.classList.contains('active');
+
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove('active');
+        item.querySelector('.accordion-content').style.maxHeight = null;
+      });
+
+      if (!isActive) {
+        currentItem.classList.add('active');
+        currentContent.style.maxHeight = currentContent.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+</body>
+</html>
