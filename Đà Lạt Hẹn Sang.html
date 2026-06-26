@@ -1014,6 +1014,14 @@
       return;
     }
 
+    // Kiểm tra định dạng số điện thoại (10 số, bắt đầu bằng 0)
+    const phoneRegex = /^(0[3|5|7|8|9])+([0-9]{8})$/;
+    const cleanPhone = phone.replace(/\s+/g, ''); // Loại bỏ khoảng trắng
+    if (!phoneRegex.test(cleanPhone)) {
+      alert('Vui lòng nhập số điện thoại hợp lệ (10 số, bắt đầu bằng đầu số 0).');
+      return;
+    }
+
     // Bạn có thể xử lý các dữ liệu đã lấy ở đây (ví dụ: gửi API)
     // console.log("Data:", {restaurant, name, phone, email, date, time, guests, occasion, request});
     
